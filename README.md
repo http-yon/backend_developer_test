@@ -9,7 +9,11 @@
 
 This repository contains a simple Node app to simulate a database server. The app loads and writes data from JSON files to simulate reading and writing to a database.
 
-In order to query the database, it's important to understand the data model:
+When making a request to the database server, the path should always include the resource name accoding to the data model. The available operations are simple CRUD operations. There are two paths for the GET method, one to retrieve all the documents in a collection, and the other one to get a single record.
+
+The database server runs on port 20000 and expects JSON payloads.
+
+## Data model
 
 ### User
 
@@ -46,10 +50,6 @@ They describe the structure for a database table or a document from a collection
     - field (String): This is the field ID. It's the equivalent of the column name for a database table.
     - label (String): Friendly name to show to users.
     - type (String): Describes the variable type for this field.
-
-When making a request to the database server, the path should always include the resource name accoding to the data model. The available operations are simple CRUD operations. There are two paths for the GET method, one to retrieve all the documents in a collection, and the other one to get a single record.
-
-The database server runs on port 20000 and expects JSON payloads.
 
 ## Query examples
 
