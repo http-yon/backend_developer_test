@@ -7,11 +7,6 @@ const PORT = 20000;
 app.use(express.json());
 
 const DATA_FOLDER = 'data';
-const DATA_PATHS = {
-  users: `${DATA_FOLDER}/users.json`,
-  accounts: `${DATA_FOLDER}/accounts.json`,
-  forms: `${DATA_FOLDER}/forms.json`,
-};
 
 /**
  * Load data from JSON file
@@ -20,7 +15,7 @@ const DATA_PATHS = {
  */
 const loadData = async (entity) => {
   try {
-    const fileData = await fs.readFile(DATA_PATHS[entity], 'utf8');
+    const fileData = await fs.readFile(`${DATA_FOLDER}/${entity}.json`, 'utf8');
     return JSON.parse(fileData);
   } catch (err) {
     console.error(`Error reading ${entity} JSON file:`, err);
@@ -35,7 +30,7 @@ const loadData = async (entity) => {
  */
 const saveData = async (entity, data) => {
   try {
-    await fs.writeFile(DATA_PATHS[entity], JSON.stringify(data, null, 4), 'utf8');
+    await fs.writeFile(`${DATA_FOLDER}/${entity}.json`, JSON.stringify(data, null, 4), 'utf8');
   } catch (err) {
     console.error(`Error saving ${entity} data to JSON file:`, err);
   }
