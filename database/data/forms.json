@@ -1,0 +1,61 @@
+{
+    "form1": {
+        "name": "Cosecha",
+        "fields": [{
+            "field": "date",
+            "label": "Fecha",
+            "type": "date"
+        },
+        {
+            "field": "employee",
+            "label": "Trabajador",
+            "type": "text"
+        },
+        {
+            "field": "quantity",
+            "label": "Cantidad (Kg)",
+            "type": "number"
+        }]
+    },
+    "form2": {
+        "name": "Secado",
+        "fields": [{
+            "field": "date",
+            "label": "Fecha",
+            "type": "date"
+        },
+        {
+            "field": "input",
+            "label": "Cantidad entrada (Kg)",
+            "type": "number"
+        },
+        {
+            "field": "output",
+            "label": "Cantidad salida (Kg)",
+            "type": "number"
+        }]
+    },
+    "form3": {
+        "name": "Fermentación",
+        "fields": [{
+            "field": "start_date",
+            "label": "Fecha inicio",
+            "type": "date"
+        },
+        {
+            "field": "input",
+            "label": "Cantidad entrada (Kg)",
+            "type": "number"
+        },
+        {
+            "field": "end_date",
+            "label": "Fecha fin",
+            "type": "date"
+        },
+        {
+            "field": "output",
+            "label": "Cantidad salida (Kg)",
+            "type": "number"
+        }]
+    }
+}

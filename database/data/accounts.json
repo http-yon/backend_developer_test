@@ -1,0 +1,100 @@
+{
+    "account1": {
+        "name": "Café",
+        "roles": {
+            "role1": {
+                "name": "Gerente",
+                "permissions": {
+                    "form1" : {
+                        "create": true,
+                        "read": true,
+                        "update": true,
+                        "delete": true
+                    },
+                    "form2" : {
+                        "create": true,
+                        "read": true,
+                        "update": true,
+                        "delete": true
+                    }
+                }
+            },
+            "role2": {
+                "name": "Administrador finca",
+                "permissions": {
+                    "form1" : {
+                        "create": true,
+                        "read": true,
+                        "update": false,
+                        "delete": false
+                    },
+                    "form2" : {
+                        "create": true,
+                        "read": true,
+                        "update": false,
+                        "delete": false
+                    }
+                }
+            }
+        },
+        "users": {
+            "user1": {
+                "name": "Pablo Mármol",
+                "role": "role1"
+            },
+            "user2": {
+                "name": "Vilma Picapiedra",
+                "role": "role2"
+            }
+        }
+    },
+    "account2": {
+        "name": "Cacao",
+        "roles": {
+            "role1": {
+                "name": "Gerente",
+                "permissions": {
+                    "form1" : {
+                        "create": true,
+                        "read": true,
+                        "update": true,
+                        "delete": true
+                    },
+                    "form3" : {
+                        "create": true,
+                        "read": true,
+                        "update": true,
+                        "delete": true
+                    }
+                }
+            },
+            "role3": {
+                "name": "Fermentación",
+                "permissions": {
+                    "form1" : {
+                        "create": false,
+                        "read": true,
+                        "update": false,
+                        "delete": false
+                    },
+                    "form3" : {
+                        "create": true,
+                        "read": true,
+                        "update": true,
+                        "delete": false
+                    }
+                }
+            }
+        },
+        "users": {
+            "user1": {
+                "name": "Pablo Mármol",
+                "role": "role1"
+            },
+            "user3": {
+                "name": "Pedro Picapiedra",
+                "role": "role3"
+            }
+        }
+    }
+}

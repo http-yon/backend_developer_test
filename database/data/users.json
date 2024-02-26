@@ -1,0 +1,39 @@
+{
+    "user1": {
+        "name": "Pablo Mármol",
+        "email": "pablo@galapp.co",
+        "phone": "3103334455",
+        "accounts": {
+            "account1": {
+                "name": "Café",
+                "role": "role1"
+            },
+            "account2": {
+                "name": "Cacao",
+                "role": "role1"
+            }
+        }
+    },
+    "user2": {
+        "name": "Vilma Picapiedra",
+        "email": "vilma@galapp.co",
+        "phone": "3218889900",
+        "accounts": {
+            "account1": {
+                "name": "Café",
+                "role": "role2"
+            }
+        }
+    },
+    "user3": {
+        "name": "Pedro Picapiedra",
+        "email": "pedro@galapp.co",
+        "phone": "3017776655",
+        "accounts": {
+            "account1": {
+                "name": "Cacao",
+                "role": "role3"
+            }
+        }
+    }
+}
