@@ -1,4 +1,5 @@
 const express = require('express');
+const { access } = require('fs');
 const fs = require('fs').promises;
 
 const app = express();
@@ -7,6 +8,118 @@ const PORT = 20000;
 app.use(express.json());
 
 const DATA_FOLDER = 'data';
+
+////////////////Servicio número 1//////////////////////////
+app.get("/users/:idUser", async (req, res) => {
+  const { idUser } = req.params
+  try {
+
+    //traemos datos de usuarios y cuentas
+    const userData = await loadData("users")
+    const accountData = await loadData("accounts")
+
+    //cuentas que tienen el usuario en cuestion
+    const user = userData[idUser]
+
+    //convertimos a obj Object para iterar
+    const accountDataObj = Object.values(accountData);
+    const userDataObj = Object.values(user.accounts);
+
+
+    //aca se almacenan los detalles del rol al que pertenece el usuario junto a sus permisos
+    const arrayWithRoles = []
+
+    //iteramos datos de account para encontrar los que tiene el usuario
+    //cuando detecta uno igual lo pushea a arrayWithRoles
+    accountDataObj.map((eleAcc) => {
+      userDataObj.map((eleUser) => {
+        if (eleUser.name === eleAcc.name) {
+          arrayWithRoles.push({
+            AccountName: eleAcc.name,
+            formName: eleAcc.roles[eleUser.role].name
+          })
+        }
+      })
+    })
+
+    const response = {
+      accounts: Object.keys(userDataObj).map(userId => {
+        const { role, ...userDataWithoutRole } = userDataObj[userId];
+        return userDataWithoutRole;
+      }),
+      form: arrayWithRoles
+    };
+
+    res.json(response)
+
+  } catch (error) {
+    res.json("error del sistema")
+    console.log(error);
+  }
+})
+//////////////////////////////////////////////////////////
+
+
+////////////////Servicio número 2//////////////////////////
+app.get("/harvest/:authorization/:account", async (req, res) => {
+  const { authorization, account } = req.params
+  try {
+    const userData = await loadData("users");
+    const formData = await loadData("forms");
+    const accData = await loadData("accounts");
+
+    //traemos usuario para autenticar
+    const user = userData[authorization];
+
+    let x = new Set();
+
+
+
+    Object.values(accData).map((dataAc) => {
+      Object.values(user.accounts).map((dataUser) => {
+        //detectar que cuentas tiene el usuario
+        if (dataAc.name.includes(dataUser.name)) {
+          x.add(dataAc)
+        }
+      })
+
+
+    })
+
+
+    console.log(x);
+
+    //auth
+    //paso 1- verificar que accounts tiene
+    //debe tener el rol que es
+    //console.log(userAcc.accounts);
+
+
+
+
+    /* Object.values(userAcc.accounts).map(data=>{
+      if (data.name === account) {
+        console.log("cauchos");
+      }
+    }); */
+
+    /* if (auth.accounts.includes(account)) {
+      console.log("Se puede");
+    } else {
+      console.log("No se puede");
+    } */
+
+
+
+    res.json("in process")
+  } catch (error) {
+    console.log(error);
+    res.json("error del sistema")
+  }
+})
+//////////////////////////////////////////////////////////
+
+
 
 /**
  * Load data from JSON file
